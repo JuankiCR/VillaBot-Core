@@ -1,9 +1,7 @@
-import os
+from decouple import config
 import discord
 
-token = os.environ['TOKEN']
 symbol = '!'
-
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -21,4 +19,4 @@ async def on_message(message):
   if message.content.startswith(symbol + 'hi'):
     await message.channel.send(f'Hello, {message.author}! \nHere {client.user}, what can i do for you?')
 
-client.run(token)
+client.run(config('T_TOKEN'))
