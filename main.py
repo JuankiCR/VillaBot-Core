@@ -17,6 +17,6 @@ async def on_message(message):
     return
 
   if message.content.startswith(symbol + 'hi'):
-    await message.channel.send(f'Hello, {message.author}! \nHere {client.user}, what can i do for you?')
+    await message.channel.send(f'Hello, {message.author}! \nHere {client.user}, what can i do for you? Test Branch Juanki')
 
 client.run(config('T_TOKEN'))
