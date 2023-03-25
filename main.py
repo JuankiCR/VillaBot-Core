@@ -19,4 +19,7 @@ async def on_message(message):
   if message.content.startswith(symbol + 'hi'):
     await message.channel.send(f'Hello, {message.author}! \nHere {client.user}, what can i do for you?')
 
+  if message.content.startswith(symbol + 'bye'):
+    await message.channel.send(f'Bye {message.author}, have a nice day!')
+
 client.run(config('T_TOKEN'))
