@@ -1,25 +1,20 @@
 from decouple import config
 import discord
+from discord.ext import commands
 
-symbol = '!'
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = discord.Client(intents = intents)
+bot = commands.Bot(command_prefix='!', intents=intents)
 
-@client.event
-async def on_ready():
-  print(f'We have logged in as {client.user}')
+@bot.command()
+async def dev_taunt(ctx, user:str = '<@500769239779770394>'):
+  embed = discord.Embed(
+    title='Feeling blue DEV?',
+    description=f'Ohh poor little {user}',
+    color=discord.Color.blurple()
+  )
+  embed.set_thumbnail(url='https://i.pinimg.com/564x/84/d0/21/84d0215cd93345f4c8db43139ec361ca.jpg')
+  await ctx.send(embed = embed)
 
-@client.event
-async def on_message(message):
-  if message.author == client.user:
-    return
-
-  if message.content.startswith(symbol + 'hi'):
-    await message.channel.send(f'Hello, {message.author}! \nHere {client.user}, what can i do for you?')
-
-  if message.content.startswith(symbol + 'bye'):
-    await message.channel.send(f'Bye {message.author}, have a nice day!')
-
-client.run(config('M_TOKEN'))
+bot.run(config('M_TOKEN'))
